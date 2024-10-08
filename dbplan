@@ -1,0 +1,49 @@
+# Database planner
+# https://dbdiagram.io/d
+
+Table ligas {
+  id integer [primary key]
+  name varchar
+}
+
+Table users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table equipos {
+  id integer [primary key]
+  name varchar
+  ownerid integer
+  ligaid integer
+}
+
+Table jugadores {
+  id integer [primary key]
+  name varchar
+  average integer
+  equipoid integer
+}
+
+Table partidos {
+  id integer [primary key]
+  equipo_local integer
+  equipo_visitante integer
+}
+
+
+
+
+
+
+Ref: "users"."id" < "equipos"."ownerid"
+
+Ref: "ligas"."id" < "equipos"."ligaid"
+
+Ref: "equipos"."id" < "jugadores"."equipoid"
+
+Ref: "equipos"."id" < "partidos"."equipo_local"
+
+Ref: "equipos"."id" < "partidos"."equipo_visitante"
